@@ -1,0 +1,11 @@
+{{- if and .Values.runbear.executor.rbac.create .Values.runbear.executor.rbac.roleName -}}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  labels:
+    {{- include "runbear-worker.labels" . | nindent 4 }}
+  name: {{ include "runbear-worker.executorRoleName" . }}
+{{- with .Values.runbear.executor.rbac.roleRules }}
+rules: {{ toYaml . | nindent 2 -}}
+{{- end }}
+{{- end -}}

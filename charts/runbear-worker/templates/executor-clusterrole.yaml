@@ -1,0 +1,11 @@
+{{- if and .Values.runbear.executor.rbac.create .Values.runbear.executor.rbac.clusterRoleName -}}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    {{- include "runbear-worker.labels" . | nindent 4 }}
+  name: {{ include "runbear-worker.executorClusterRoleName" . }}
+{{- with .Values.runbear.executor.rbac.clusterRoleRules }}
+rules: {{ toYaml . | nindent 2 -}}
+{{- end }}
+{{- end -}}
