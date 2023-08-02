@@ -91,26 +91,3 @@ Service account name of executor
 {{- default "default" .Values.runbear.executor.serviceAccount.existingServiceAccountName }}
 {{- end }}
 {{- end }}
-
-{{/*
-Cluster role name of executor
-*/}}
-{{- define "runbear-worker.executorClusterRoleName" -}}
-{{- if and .Values.runbear.executor.rbac.create .Values.runbear.executor.rbac.clusterRoleName }}
-{{- $fullName := printf "%s-executor" (include "runbear-worker.fullname" .) -}}
-{{- default $fullName .Values.runbear.executor.rbac.clusterRoleName }}
-{{- else }}
-{{- default "default" .Values.runbear.executor.rbac.existingClusterRoleName }}
-{{- end }}
-{{- end }}
-
-
-{{/*
-Role name of executor
-*/}}
-{{- define "runbear-worker.executorRoleName" -}}
-{{- if and .Values.runbear.executor.rbac.create .Values.runbear.executor.rbac.roleName }}
-{{- $fullName := printf "%s-executor" (include "runbear-worker.fullname" .) -}}
-{{- default $fullName .Values.runbear.executor.rbac.roleName }}
-{{- end }}
-{{- end }}

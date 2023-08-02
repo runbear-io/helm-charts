@@ -1,4 +1,4 @@
-{{- if and .Values.runbear.executor.rbac.create .Values.runbear.executor.rbac.clusterRoleName -}}
+{{- if and .Values.runbear.executor.rbac.create (not .Values.runbear.executor.rbac.useRole) }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -8,7 +8,7 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: {{ include "runbear-worker.executorClusterRoleName" . }}
+  name: {{ default (include "runbear-worker.fullname" .) .Values.runbear.executor.rbac.existingClusterRoleName }}
 subjects:
 - kind: ServiceAccount
   name: {{ include "runbear-worker.executorServiceAccountName" . }}

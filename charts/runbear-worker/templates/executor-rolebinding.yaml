@@ -1,14 +1,14 @@
-{{- if and .Values.runbear.executor.rbac.create .Values.runbear.executor.rbac.roleName -}}
+{{- if and .Values.runbear.executor.rbac.create .Values.runbear.executor.rbac.useRole }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: {{ include "runbear-worker.executorServiceAccountName" . }}
+  name: {{ include "runbear-worker.fullname" . }}
   labels:
     {{- include "runbear-worker.labels" . | nindent 4 }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: {{ include "runbear-worker.executorRoleName" . }}
+  name: {{ include "runbear-worker.fullname" . }}
 subjects:
 - kind: ServiceAccount
   name: {{ include "runbear-worker.executorServiceAccountName" . }}

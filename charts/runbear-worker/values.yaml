@@ -78,13 +78,12 @@ runbear:
     # Set up rbac rules for the executor service account.
     # RBAC rules are applied to runbook executions.
     rbac:
+      # Set true to create RBAC resources, false to skip.
       create: true
       # Specify existing clusterrole to bind to the executor service account.
       # i.e. cluster-admin, admin, edit, view
       existingClusterRoleName: edit
 
-      # Either clusterRoleName or roleName must be set.
-      clusterRoleName: "runbear-executor"
       # Specify custom rules for the clusterrole.
       # Not used if existingClusterRoleName is set.
       clusterRoleRules: {}
@@ -95,7 +94,8 @@ runbear:
         #     - pods
         #   verbs: ["get", "list", "watch"]
 
-      roleName: ""
+      # Use role instead of clusterrole.
+      useRole: false
       roleRules: {}
         # - apiGroups: [""]
         #   resources:
