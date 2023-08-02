@@ -3,6 +3,16 @@ entries:
   runbear-worker:
   - apiVersion: v2
     appVersion: v0.2.3
+    created: "2023-08-02T04:30:26.741010132Z"
+    description: Runbear worker
+    digest: a2149984ae8b633903c05bcecf521390d8799eac17c66506db93a0bb82a1f3c6
+    name: runbear-worker
+    type: application
+    urls:
+    - https://github.com/runbear-io/helm-charts/releases/download/runbear-worker-0.2.4/runbear-worker-0.2.4.tgz
+    version: 0.2.4
+  - apiVersion: v2
+    appVersion: v0.2.3
     created: "2023-07-18T15:05:49.409893+09:00"
     description: Runbear worker
     digest: 802509dfff551688e1daa6556231844905d2e2aa285c055a4673a18ac8f50945
@@ -21,4 +31,4 @@ entries:
     urls:
     - runbear-worker-0.2.1.tgz
     version: 0.2.1
-generated: "2023-07-18T15:05:49.409909+09:00"
+generated: "2023-08-02T04:30:26.741020532Z"
